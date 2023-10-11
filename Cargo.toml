@@ -1,0 +1,12 @@
+[package]
+name = "where_is_starknet_bot"
+authors = ["@abdelhamidbakhta"]
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+teloxide = "0.12.2"
+tokio = { version = "1.33.0", features = ["full"] }
+pretty_env_logger = "0.5.0"
+log = "0.4.20"
+dotenv = "0.15.0"
