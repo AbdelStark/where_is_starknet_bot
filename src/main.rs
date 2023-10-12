@@ -1,4 +1,5 @@
 extern crate dotenv;
+
 use dotenv::dotenv;
 use teloxide::{dispatching::dialogue::InMemStorage, prelude::*};
 type WhereIsStarknetDialogue = Dialogue<State, InMemStorage<State>>;
@@ -79,8 +80,10 @@ async fn receive_exact_url(
 ) -> HandlerResult {
     match msg.text() {
         Some(exact_url) => {
-            let report = format!("Website: {website}\nExact URL: {exact_url}");
-            bot.send_message(msg.chat.id, report).await?;
+            let submit_url = where_is_starknet_bot::generate_submit_issue_url(&website, exact_url);
+            bot.send_message(msg.chat.id, "Click on the link bellow:")
+                .await?;
+            bot.send_message(msg.chat.id, submit_url).await?;
             dialogue.exit().await?;
         }
         _ => {
